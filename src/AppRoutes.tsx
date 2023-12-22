@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { AcidAscorbic, Alp } from './pages/index'
+import { AcidAscorbic } from './pages/acidAscorbic'
+import { Alp } from './pages/alp'
 
 export const AppRoutes = () => {
   return (
