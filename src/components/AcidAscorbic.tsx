@@ -9,7 +9,7 @@ export const AcidAscorbic = () => {
   console.log('ascorbic: ', ascorbic)
 
   const memoizedData = useMemo(() => {
-    const answerData : Record<'Positive' | 'Negative', number> = {'Positive': 0, 'Negative': 0}
+    const answerData : Record<string, number> = {'Positive': 0, 'Negative': 0}
     for (const item of ascorbic) {
       if (item.answer === 'Positive') {
         answerData['Positive'] += 1
@@ -20,20 +20,17 @@ export const AcidAscorbic = () => {
     return answerData
   }, [])
 
-  console.log(memoizedData)
-
-
   return (
     <div className="chart-container">
       <h2 style={{ textAlign: "center" }}>جواب آزمایش Acid_Ascorbic</h2>
       <div style={{width: '400px', height: '400px'}}>
         <Pie
           data={{
-            labels: ['Positive', 'Negative'], 
+            labels: Object.keys(memoizedData), 
             datasets: [
               {
                 label: "Acid Ascorbic ",
-                data: [memoizedData.Positive, memoizedData.Negative],
+                data: Object.values(memoizedData),
                 backgroundColor: [
                   "#50AF95",
                   "#f3ba2f",
