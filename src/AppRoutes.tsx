@@ -9,6 +9,7 @@ export const AppRoutes = () => {
         <Route path='' element={<Navigate to={'/acid-ascorbic'} />} />
         <Route path='acid-ascorbic' element={<AcidAscorbic />} />
         <Route path='alp' element={<Alp />} />
+        <Route path='*' element={<h1>Not Found Page</h1>} />
       </Routes>
     </BrowserRouter>
   )
