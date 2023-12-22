@@ -1,32 +1,35 @@
 import { useMemo } from 'react'
+import { Pie } from "react-chartjs-2";
 
-import {default as alp} from '../data/ALP.json'
-import { makeRangeData } from '../utils/functions'
-import { Pie } from 'react-chartjs-2'
+import {default as ascorbic} from '../../data/Acid_Ascorbic.json'
 
 
-export const Alp = () => {
+export const AcidAscorbic = () => {
 
-  // console.log('alp: ', alp)
-
-  makeRangeData({data: alp, low: 40, high: 130})
+  console.log('ascorbic: ', ascorbic)
 
   const memoizedData = useMemo(() => {
-    return makeRangeData({data: alp, low: 40, high: 130})
+    const answerData : Record<string, number> = {'Positive': 0, 'Negative': 0}
+    for (const item of ascorbic) {
+      if (item.answer === 'Positive') {
+        answerData['Positive'] += 1
+      } else if(item.answer === 'Negative') {
+        answerData['Negative'] += 1
+      }
+    }
+    return answerData
   }, [])
-
-  console.log(memoizedData)
 
   return (
     <div className="chart-container">
-      <h2 style={{ textAlign: "center" }}>Pie Chart</h2>
+      <h2 style={{ textAlign: "center" }}>جواب آزمایش Acid_Ascorbic</h2>
       <div style={{width: '400px', height: '400px'}}>
         <Pie
           data={{
             labels: Object.keys(memoizedData), 
             datasets: [
               {
-                label: "ALP",
+                label: "Acid Ascorbic ",
                 data: Object.values(memoizedData),
                 backgroundColor: [
                   "#50AF95",
@@ -43,7 +46,7 @@ export const Alp = () => {
             plugins: {
               title: {
                 display: true,
-                text: "جواب آزمایش ALP"
+                text: "جواب آزمایش Acid_Ascorbic"
               }
             }
           }}
